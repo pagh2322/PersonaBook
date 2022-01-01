@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -46,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.btappbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_outline_web_asset_24);
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addPersonaIntent = new Intent(getApplicationContext(), EditInfoActivity.class);
+                startActivity(addPersonaIntent);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
