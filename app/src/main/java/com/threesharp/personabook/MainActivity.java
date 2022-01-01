@@ -47,20 +47,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_outline_web_asset_24);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.bottom_app_bar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC"));
-                startActivity(intent);
+                Intent siteIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC"));
+                startActivity(siteIntent);
                 break;
             case R.id.ab_relation:
                 binding.btappbar.replaceMenu(R.menu.re_bottom_app_bar_menu);
@@ -69,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                 binding.btappbar.replaceMenu(R.menu.bottom_app_bar_menu);
                 break;
             case R.id.ab_me:
-                Toast.makeText(getApplicationContext(), "Press Me", Toast.LENGTH_SHORT).show();
+                Intent myInfoIntent = new Intent(getApplicationContext(), MeActivity.class);
+                startActivity(myInfoIntent);
                 break;
             case R.id.ab_setting:
                 Toast.makeText(getApplicationContext(), "Press Setting", Toast.LENGTH_SHORT).show();
