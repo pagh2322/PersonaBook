@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="bgColor">#f5f5f5</color>
+    <color name="fontWColor">#f5f5f5</color>
+    <color name="fontBColor">#a0000000</color>
 
     <color name="ISTJ">#5fba51</color>
     <color name="sISTJ">#995fba51</color>

@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/collapsed_total_personas.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/ic_outline_add_24.xml" value="0.1" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/perona_toolbar.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/total_personas.xml" value="0.176" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_main.xml" value="0.36947368421052634" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/total_persona_widget.xml" value="0.12447916666666667" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/type_widget.xml" value="0.5746031746031746" />
       </map>
     </option>
   </component>
