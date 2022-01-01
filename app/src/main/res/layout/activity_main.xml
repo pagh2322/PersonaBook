@@ -85,6 +85,7 @@
         android:layout_height="56dp"
         android:backgroundTint="@color/bgColor"
         android:paddingHorizontal="30dp"
+        android:theme="@style/BottomAppBar"
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="5dp"
