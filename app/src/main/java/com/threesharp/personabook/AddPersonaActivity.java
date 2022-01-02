@@ -10,51 +10,38 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.threesharp.personabook.databinding.ActivityEditInfoBinding;
+import com.threesharp.personabook.databinding.ActivityAddPersonaBinding;
 
-public class EditInfoActivity extends AppCompatActivity {
-    private ActivityEditInfoBinding binding;
+public class AddPersonaActivity extends AppCompatActivity {
+    private ActivityAddPersonaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEditInfoBinding.inflate(getLayoutInflater());
+        binding = ActivityAddPersonaBinding.inflate(getLayoutInflater());
         init();
         setContentView(binding.getRoot());
     }
 
     private void init() {
-        initToolbar();
-    }
-    private void initToolbar() {
         setSupportActionBar(binding.toolbar);
-        switch(getIntent().getStringExtra("title")) {
-            case "me":
-                binding.tvTitle.setText("내 정보");
-                break;
-            case "persona":
-                binding.tvTitle.setText("페르소나 정보");
-                break;
-        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_outline_close_24);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.edit_tool_bar_menu, menu);
+        inflater.inflate(R.menu.add_tool_bar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.tb_edit:
+            case R.id.tb_add:
                 finish();
                 break;
             default:
@@ -63,7 +50,7 @@ public class EditInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void loadDialog() {
-        AlertDialog.Builder dlg = new AlertDialog.Builder(EditInfoActivity.this);
+        AlertDialog.Builder dlg = new AlertDialog.Builder(AddPersonaActivity.this);
         dlg.setMessage("취소할까요?");
         dlg.setPositiveButton("취소",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
@@ -72,6 +59,7 @@ public class EditInfoActivity extends AppCompatActivity {
         });
         dlg.show();
     }
+
     @Override
     public void onBackPressed() {
         loadDialog();

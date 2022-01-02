@@ -13,6 +13,7 @@
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/personality_type.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/personality_type_nsv.xml" value="0.265625" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/total_personas.xml" value="0.176" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_add_persona.xml" value="0.1390625" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_edit_info.xml" value="0.536" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_main.xml" value="0.2834978843441467" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_me.xml" value="0.264" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/content_personality_type.xml" value="0.264" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/total_persona_widget.xml" value="0.12447916666666667" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/type_widget.xml" value="0.5746031746031746" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/menu/add_tool_bar_menu.xml" value="0.1390625" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/menu/bottom_app_bar_menu.xml" value="0.264" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/menu/edit_tool_bar_menu.xml" value="0.1046875" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/menu/personality_tool_bar_menu.xml" value="0.24947916666666667" />

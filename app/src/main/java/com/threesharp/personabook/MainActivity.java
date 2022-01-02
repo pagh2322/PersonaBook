@@ -50,10 +50,8 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent addPersonaIntent = new Intent(getApplicationContext(), EditInfoActivity.class);
-//                addPersonaIntent.putExtra("title", "addPersona");
-//                startActivity(addPersonaIntent);
-                // start add persona activity
+                Intent addPersonaIntent = new Intent(getApplicationContext(), AddPersonaActivity.class);
+                startActivity(addPersonaIntent);
             }
         });
     }
