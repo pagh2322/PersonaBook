@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.threesharp.personabook">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonaBook">
+        <activity
+            android:name=".AddPersonaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalityTypeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_personality_type"
+            android:theme="@style/Theme.PersonaBook.NoActionBar" />
+        <activity
+            android:name=".EditInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MeActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
