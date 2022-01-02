@@ -11,6 +11,8 @@ public final class Types {
     public class Type {
         String name;
         int color;
+        int sColor;
+//        int[] relation;
         Type(String name, int color) {
             this.name = name;
             this.color = color;

@@ -22,7 +22,6 @@ public class PersonalityTypeActivity extends AppCompatActivity {
     private int type;
     GradientDrawable nsvDrawable;
     VectorDrawable backDrawable;
-    boolean isCollapsed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +52,12 @@ public class PersonalityTypeActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (appBarLayout.getTotalScrollRange()-Math.abs(verticalOffset) <= finalActionBarHeight) {
-                    isCollapsed = true;
                     nsvDrawable.setCornerRadius(0);
                     backDrawable.setTint(getResources().getColor(R.color.fontBColor));
                     getSupportActionBar().setHomeAsUpIndicator(backDrawable);
                     binding.nsv.setBackground(nsvDrawable);
                 }
                 else {
-                    isCollapsed = false;
                     nsvDrawable.setCornerRadius(dpToPx(35));
                     backDrawable.setTint(getResources().getColor(R.color.bgColor));
                     getSupportActionBar().setHomeAsUpIndicator(backDrawable);
@@ -72,8 +69,6 @@ public class PersonalityTypeActivity extends AppCompatActivity {
     private void initToolbar() {
         type = getIntent().getIntExtra("type", 0);
         binding.llToolbar.setBackgroundColor(Types.get(type).color);
-//        binding.tvTitle.setText(Types.get(type).name);
-//        binding.tvTitle.setTextColor(Types.get(type).color);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -92,8 +87,7 @@ public class PersonalityTypeActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        if (isCollapsed == true)
-            backDrawable.setTint(getResources().getColor(R.color.bgColor));
+        backDrawable.setTint(getResources().getColor(R.color.bgColor));
         super.onBackPressed();
     }
 }
