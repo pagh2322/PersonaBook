@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        typeWidgetAdapter = new TypeWidgetAdapter(typeList);
+        typeWidgetAdapter = new TypeWidgetAdapter(this, typeList);
         binding.rvType.setAdapter(typeWidgetAdapter);
         binding.rvType.setLayoutManager(new GridLayoutManager(this,4));
         init();
@@ -50,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addPersonaIntent = new Intent(getApplicationContext(), EditInfoActivity.class);
-                startActivity(addPersonaIntent);
+//                Intent addPersonaIntent = new Intent(getApplicationContext(), EditInfoActivity.class);
+//                addPersonaIntent.putExtra("title", "addPersona");
+//                startActivity(addPersonaIntent);
+                // start add persona activity
             }
         });
     }
@@ -79,53 +81,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myInfoIntent);
                 break;
             case R.id.ab_setting:
-                Toast.makeText(getApplicationContext(), "Press Setting", Toast.LENGTH_SHORT).show();
+
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
     // initialize type widgets
-    private void initTypeColor() {
-        TypeColor.ISTJ = getColor(R.color.ISTJ);
-        TypeColor.ISFJ = getColor(R.color.ISFJ);
-        TypeColor.INFJ = getColor(R.color.INFJ);
-        TypeColor.INTJ = getColor(R.color.INTJ);
-        TypeColor.ISTP = getColor(R.color.ISTP);
-        TypeColor.ISFP = getColor(R.color.ISFP);
-        TypeColor.INFP = getColor(R.color.INFP);
-        TypeColor.INTP = getColor(R.color.INTP);
-        TypeColor.ESTP = getColor(R.color.ESTP);
-        TypeColor.ESFP = getColor(R.color.ESFP);
-        TypeColor.ENFP = getColor(R.color.ENFP);
-        TypeColor.ENTP = getColor(R.color.ENTP);
-        TypeColor.ESTJ = getColor(R.color.ESTJ);
-        TypeColor.ESFJ = getColor(R.color.ESFJ);
-        TypeColor.ENFJ = getColor(R.color.ENFJ);
-        TypeColor.ENTJ = getColor(R.color.ENTJ);
-
-    }
-    public void initRVType() {
-        initTypeColor();
-        addType("ISTJ-A/T", "4", TypeColor.ISTJ);
-        addType("ISFJ-A/T", "14", TypeColor.ISFJ);
-        addType("INFJ-A/T", "2", TypeColor.INFJ);
-        addType("INTJ-A/T", "0", TypeColor.INTJ);
-        addType("ISTP-A/T", "1", TypeColor.ISTP);
-        addType("ISFP-A/T", "12", TypeColor.ISFP);
-        addType("INFP-A/T", "21", TypeColor.INFP);
-        addType("INTP-A/T", "1", TypeColor.INTP);
-        addType("ESTP-A/T", "5", TypeColor.ESTP);
-        addType("ESFP-A/T", "0", TypeColor.ESFP);
-        addType("ENFP-A/T", "9", TypeColor.ENFP);
-        addType("ENTP-A/T", "14", TypeColor.ENTP);
-        addType("ESTJ-A/T", "2", TypeColor.ESTJ);
-        addType("ESFJ-A/T", "6", TypeColor.ESFJ);
-        addType("ENFJ-A/T", "15", TypeColor.ENFJ);
-        addType("ENTJ-A/T", "0", TypeColor.ENTJ);
+    private void initRVType() {
+        new Types(getApplicationContext());
+        for (Types.Type type : Types.types) {
+            addType(type.name, "0", type.color);
+        }
         typeWidgetAdapter.notifyDataSetChanged();
     }
-    public void addType(String type, String num, int background) {
+    private void addType(String type, String num, int background) {
         TypeWidget typeWidget = new TypeWidget();
         typeWidget.setType(type);
         typeWidget.setNumber(num);

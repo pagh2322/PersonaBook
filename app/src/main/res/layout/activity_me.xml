@@ -80,7 +80,7 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="30dp"
                 android:textAppearance="@style/BoldText"
-                android:text="내 정보 변경하기 >"/>
+                android:text="내 정보 수정하기 >"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

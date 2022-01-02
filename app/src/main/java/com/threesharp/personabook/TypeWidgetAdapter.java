@@ -1,6 +1,7 @@
 package com.threesharp.personabook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 
 public class TypeWidgetAdapter extends RecyclerView.Adapter<TypeWidgetAdapter.ViewHolder> {
     private ArrayList<TypeWidget> mData = null ;
+    private Context context;
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    TypeWidgetAdapter(ArrayList<TypeWidget> list) {
+    TypeWidgetAdapter(Context context, ArrayList<TypeWidget> list) {
+        this.context = context;
         mData = list ;
     }
 
@@ -29,6 +32,18 @@ public class TypeWidgetAdapter extends RecyclerView.Adapter<TypeWidgetAdapter.Vi
             type = itemView.findViewById(R.id.tv_type) ;
             number = itemView.findViewById(R.id.tv_num) ;
             background = itemView.findViewById(R.id.cv_typeView) ;
+            // When click view
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Intent ptActivity = new Intent(context, PersonalityTypeActivity.class);
+                        ptActivity.putExtra("type", pos);
+                        context.startActivity(ptActivity);
+                    }
+                }
+            });
         }
     }
 
