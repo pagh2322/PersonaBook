@@ -13,6 +13,8 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
+
 import androidx.core.content.ContextCompat;
 
 import com.threesharp.personabook.databinding.ActivityPersonalityTypeBinding;

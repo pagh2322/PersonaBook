@@ -2,10 +2,7 @@ package com.threesharp.personabook;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +14,8 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.threesharp.personabook.databinding.ActivityEditInfoBinding;
+
+import java.sql.Array;
 
 public class EditInfoActivity extends AppCompatActivity {
     private ActivityEditInfoBinding binding;
@@ -34,6 +33,7 @@ public class EditInfoActivity extends AppCompatActivity {
         initToolbar();
         initDialog();
     }
+
     private void initToolbar() {
         setSupportActionBar(binding.toolbar);
         switch(getIntent().getStringExtra("title")) {
