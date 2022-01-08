@@ -2,6 +2,8 @@ package com.threesharp.personabook;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,10 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-
 import com.threesharp.personabook.databinding.ActivityEditInfoBinding;
 
-import java.sql.Array;
 
 public class EditInfoActivity extends AppCompatActivity {
     private ActivityEditInfoBinding binding;

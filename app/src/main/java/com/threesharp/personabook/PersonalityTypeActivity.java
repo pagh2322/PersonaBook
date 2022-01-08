@@ -56,15 +56,13 @@ public class PersonalityTypeActivity extends AppCompatActivity {
                 if (appBarLayout.getTotalScrollRange()-Math.abs(verticalOffset) <= finalActionBarHeight) {
                     nsvDrawable.setCornerRadius(0);
                     backDrawable.setTint(getResources().getColor(R.color.fontBColor));
-                    getSupportActionBar().setHomeAsUpIndicator(backDrawable);
-                    binding.nsv.setBackground(nsvDrawable);
                 }
                 else {
                     nsvDrawable.setCornerRadius(dpToPx(35));
                     backDrawable.setTint(getResources().getColor(R.color.bgColor));
-                    getSupportActionBar().setHomeAsUpIndicator(backDrawable);
-                    binding.nsv.setBackground(nsvDrawable);
                 }
+                getSupportActionBar().setHomeAsUpIndicator(backDrawable);
+                binding.nsv.setBackground(nsvDrawable);
             }
         });
     }

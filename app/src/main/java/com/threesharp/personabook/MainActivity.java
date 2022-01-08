@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     ArrayList<TypeWidget> typeList = new ArrayList<TypeWidget>();
     TypeWidgetAdapter typeWidgetAdapter = null;
+    private PersonaDatabase personaDB = null;
+    private int totalNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,31 @@ public class MainActivity extends AppCompatActivity {
         binding.rvType.setAdapter(typeWidgetAdapter);
         binding.rvType.setLayoutManager(new GridLayoutManager(this,4));
         init();
+        // initialize data
+        class InsertRunnable implements Runnable {
+            @Override
+            public void run() {
+                initData();
+                initRVType();
+            }
+        }
+        InsertRunnable insertRunnable = new InsertRunnable();
+        Thread t = new Thread(insertRunnable);
+        t.start();
         setContentView(binding.getRoot());
     }
 
     // initialize
     private void init() {
         initBottomAppbar();
-        initRVType();
+    }
+
+    // initialize persona database
+    private void initData() {
+        personaDB = PersonaDatabase.getInstance(this);
+        totalNumber = personaDB.personaDao().getAll().size();
+        if (totalNumber >= 0)
+            binding.tvTotalNumber.setText(String.valueOf(totalNumber));
     }
 
     // initialize bottom appbar
@@ -88,15 +108,18 @@ public class MainActivity extends AppCompatActivity {
     // initialize type widgets
     private void initRVType() {
         new Types(getApplicationContext());
-        for (Types.Type type : Types.types) {
-            addType(type.name, "0", type.color);
+//        for (Types.Type type : Types.types) {
+//            addType(type.name, "0", type.color);
+//        }
+        for (int i=0; i<Types.types.size(); i++) {
+            addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
         }
         typeWidgetAdapter.notifyDataSetChanged();
     }
-    private void addType(String type, String num, int background) {
+    private void addType(String type, int num, int background) {
         TypeWidget typeWidget = new TypeWidget();
         typeWidget.setType(type);
-        typeWidget.setNumber(num);
+        typeWidget.setNumber(String.valueOf(num));
         typeWidget.setBackground(background);
         typeList.add(typeWidget);
     }
