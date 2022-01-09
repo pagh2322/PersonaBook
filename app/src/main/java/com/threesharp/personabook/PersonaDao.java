@@ -14,8 +14,10 @@ public interface PersonaDao {
     List<Persona> getAll();
     @Query("SELECT * FROM Persona WHERE type IN (:type)")
     List<Persona> load(int type);
+    @Query("SELECT * FROM Persona WHERE type IN (:type) AND sex IN (:sex)")
+    List<Persona> loadSex(int type, int sex);
     @Insert
     void insert(Persona persona);
-    @Delete
-    void delete(Persona persona);
+    @Query("DELETE FROM Persona WHERE id IN (:id)")
+    void delete(int id);
 }

@@ -22,12 +22,23 @@ import com.threesharp.personabook.databinding.ActivityAddPersonaBinding;
 public class AddPersonaActivity extends AppCompatActivity {
     private ActivityAddPersonaBinding binding;
     private Dialog cancelDialog;
+    private Dialog addDialog;
+    private PersonaDatabase personaDB = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddPersonaBinding.inflate(getLayoutInflater());
         init();
+        class InsertRunnable implements Runnable {
+            @Override
+            public void run() {
+                personaDB = PersonaDatabase.getInstance(AddPersonaActivity.this);
+            }
+        }
+        InsertRunnable insertRunnable = new InsertRunnable();
+        Thread t = new Thread(insertRunnable);
+        t.start();
         setContentView(binding.getRoot());
     }
 
@@ -54,10 +65,7 @@ public class AddPersonaActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.tb_add:
-                finish();
-                break;
-            default:
-                break;
+                addDialog.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -77,6 +85,50 @@ public class AddPersonaActivity extends AppCompatActivity {
         tvYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
+            }
+        });
+        addDialog = new Dialog(AddPersonaActivity.this);
+        addDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        addDialog.setContentView(R.layout.add_dialog);
+        addDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView tvCancel = addDialog.findViewById(R.id.tv_cancel);
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addDialog.dismiss();
+            }
+        });
+        TextView tvAdd = addDialog.findViewById(R.id.tv_add);
+        tvAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Persona persona = new Persona();
+                persona.name = binding.etName.getText().toString();
+                if (binding.rbMale.isChecked())
+                    persona.sex = 0;
+                else
+                    persona.sex = 1;
+                int i, s, t, j;
+                if (binding.rbI.isChecked())
+                    i = 0;
+                else
+                    i = 1;
+                if (binding.rbS.isChecked())
+                    s = 0;
+                else
+                    s = 1;
+                if (binding.rbT.isChecked())
+                    t = 0;
+                else
+                    t = 1;
+                if (binding.rbJ.isChecked())
+                    j = 0;
+                else
+                    j = 1;
+                int type = 1000*i + 100*s + 10*t + j;
+                persona.type = Types.getType(type);
+                personaDB.personaDao().insert(persona);
                 finish();
             }
         });

@@ -13,7 +13,7 @@ public abstract class PersonaDatabase extends RoomDatabase {
 
     public synchronized static PersonaDatabase getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), PersonaDatabase.class, "persona.db").build();
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), PersonaDatabase.class, "persona.db").allowMainThreadQueries().build();
         }
         return INSTANCE;
     }

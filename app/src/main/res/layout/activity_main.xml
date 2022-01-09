@@ -14,6 +14,7 @@
         app:elevation="0dp"
         android:background="@color/bgColor">
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/ctl_myPersona"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:contentScrim="@color/bgColor"
@@ -96,7 +97,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/INTJ"
+        app:backgroundTint="@android:color/transparent"
         app:tint="@null"
         android:elevation="0dp"
         app:borderWidth="0dp"

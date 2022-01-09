@@ -3,9 +3,12 @@ package com.threesharp.personabook;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TypeWidgetAdapter typeWidgetAdapter = null;
     private PersonaDatabase personaDB = null;
     private int totalNumber = 0;
+    GradientDrawable tpDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
         typeWidgetAdapter = new TypeWidgetAdapter(this, typeList);
         binding.rvType.setAdapter(typeWidgetAdapter);
         binding.rvType.setLayoutManager(new GridLayoutManager(this,4));
+        new Types(this);
+        new MyInfo(this);
+        personaDB = PersonaDatabase.getInstance(this);
         init();
         // initialize data
         class InsertRunnable implements Runnable {
             @Override
             public void run() {
-                initData();
-                initRVType();
+                initThread();
             }
         }
         InsertRunnable insertRunnable = new InsertRunnable();
@@ -56,10 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     // initialize persona database
     private void initData() {
-        personaDB = PersonaDatabase.getInstance(this);
         totalNumber = personaDB.personaDao().getAll().size();
-        if (totalNumber >= 0)
-            binding.tvTotalNumber.setText(String.valueOf(totalNumber));
+        binding.tvTotalNumber.setText(String.valueOf(totalNumber));
     }
 
     // initialize bottom appbar
@@ -100,22 +104,43 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myInfoIntent);
                 break;
             case R.id.ab_setting:
-
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
     // initialize type widgets
     private void initRVType() {
-        new Types(getApplicationContext());
-//        for (Types.Type type : Types.types) {
-//            addType(type.name, "0", type.color);
-//        }
         for (int i=0; i<Types.types.size(); i++) {
             addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
         }
         typeWidgetAdapter.notifyDataSetChanged();
     }
+    private void setColor() {
+        int type = MyInfo.getType();
+        tpDrawable = (GradientDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.total_personas);
+        tpDrawable.setColor(Types.get(type).sColor);
+        binding.llTotalPersona.setBackground(tpDrawable);
+        binding.ctlMyPersona.setCollapsedTitleTextColor(Types.get(type).sColor);
+        binding.fab.setBackgroundTintList(ColorStateList.valueOf(Types.get(type).color));
+    }
+    private void initThread() {
+        initData();
+        initRVType();
+        setColor();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setColor();
+        binding.tvTotalNumber.setText(String.valueOf(personaDB.personaDao().getAll().size()));
+        typeList.clear();
+        for (int i=0; i<Types.types.size(); i++) {
+            addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
+        }
+        typeWidgetAdapter.notifyDataSetChanged();
+    }
+
     private void addType(String type, int num, int background) {
         TypeWidget typeWidget = new TypeWidget();
         typeWidget.setType(type);

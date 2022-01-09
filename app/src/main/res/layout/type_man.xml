@@ -6,11 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bgColor">
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_clothe"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
+        android:id="@+id/cv_name"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
         app:cardCornerRadius="10dp"
-        android:layout_margin="15dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="10dp"
         android:elevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +20,7 @@
         app:cardBackgroundColor="@color/bgColor"
         android:layout_gravity="center">
         <TextView
-            android:id="@+id/tv_clotheSize"
+            android:id="@+id/tv_typedName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="박건호"
@@ -27,6 +28,7 @@
             android:padding="2dp"
             android:layout_margin="2dp"
             android:textColor="@color/fontBColor"
+            android:textSize="16sp"
             android:layout_gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

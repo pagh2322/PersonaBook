@@ -13,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TypeWidgetAdapter extends RecyclerView.Adapter<TypeWidgetAdapter.ViewHolder> {
-    private ArrayList<TypeWidget> mData = null ;
+    private ArrayList<TypeWidget> mData;
     private Context context;
+    private PersonaDatabase database;
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
     TypeWidgetAdapter(Context context, ArrayList<TypeWidget> list) {
         this.context = context;
         mData = list ;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

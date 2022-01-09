@@ -1,7 +1,6 @@
 package com.threesharp.personabook;
 
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
@@ -10,20 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.threesharp.personabook.databinding.ActivityPersonalityTypeBinding;
 
 public class PersonalityTypeActivity extends AppCompatActivity {
     private ActivityPersonalityTypeBinding binding;
     private int type;
+    private int typeNumber;
+    private PersonaDatabase personaDB = null;
     GradientDrawable nsvDrawable;
     VectorDrawable backDrawable;
+    private TypeSexAdapter typeMaleAdapter;
+    private TypeSexAdapter typeFemaleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,46 @@ public class PersonalityTypeActivity extends AppCompatActivity {
         nsvDrawable = (GradientDrawable) ContextCompat.getDrawable(this, R.drawable.personality_type_nsv);
         backDrawable = (VectorDrawable) ContextCompat.getDrawable(this, R.drawable.ic_outline_arrow_back_ios_new_24);
         init();
+        class InsertRunnable implements Runnable {
+            @Override
+            public void run() {
+                try {
+                    typeMaleAdapter = new TypeSexAdapter(PersonalityTypeActivity.this, personaDB.personaDao().loadSex(type,0));
+                    typeFemaleAdapter = new TypeSexAdapter(PersonalityTypeActivity.this, personaDB.personaDao().loadSex(type,1));
+                    typeMaleAdapter.notifyDataSetChanged();
+                    typeFemaleAdapter.notifyDataSetChanged();
+                    binding.rvMale.setAdapter(typeMaleAdapter);
+                    binding.rvFemale.setAdapter(typeFemaleAdapter);
+                    binding.rvMale.setLayoutManager(new GridLayoutManager(PersonalityTypeActivity.this,4));
+                    binding.rvFemale.setLayoutManager(new GridLayoutManager(PersonalityTypeActivity.this,4));
+                }
+                catch (Exception e) {
+
+                }
+            }
+        }
+        InsertRunnable insertRunnable = new InsertRunnable();
+        Thread t = new Thread(insertRunnable);
+        t.start();
         setContentView(binding.getRoot());
     }
+    // initialize persona database
+    private void initData() {
+        personaDB = PersonaDatabase.getInstance(this);
+        typeNumber = personaDB.personaDao().load(type).size();
+        binding.tvTotal.setText(String.valueOf(typeNumber));
+        binding.tvTotalMale.setText(String.valueOf(personaDB.personaDao().loadSex(type,0).size()));
+        binding.tvTotalFemale.setText(String.valueOf(personaDB.personaDao().loadSex(type,1).size()));
+        typeMaleAdapter = new TypeSexAdapter(PersonalityTypeActivity.this, personaDB.personaDao().loadSex(type,0));
+        typeFemaleAdapter = new TypeSexAdapter(PersonalityTypeActivity.this, personaDB.personaDao().loadSex(type,1));
+    }
     private void init() {
+        type = getIntent().getIntExtra("type", 0);
         initToolbar();
         initAppbar();
         binding.tvPersonality.setText(Types.get(type).name);
-        getWindow().getDecorView().setBackgroundColor(Types.get(type).color);
+        binding.getRoot().setBackgroundColor(Types.get(type).sColor);
+        initData();
     }
     public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
@@ -67,8 +104,7 @@ public class PersonalityTypeActivity extends AppCompatActivity {
         });
     }
     private void initToolbar() {
-        type = getIntent().getIntExtra("type", 0);
-        binding.llToolbar.setBackgroundColor(Types.get(type).color);
+        binding.llToolbar.setBackgroundColor(Types.get(type).sColor);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -89,5 +125,11 @@ public class PersonalityTypeActivity extends AppCompatActivity {
     public void onBackPressed() {
         backDrawable.setTint(getResources().getColor(R.color.bgColor));
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        personaDB.destroyInstance();
     }
 }

@@ -22,13 +22,15 @@
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/select_sex_text.xml" value="0.2328125" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/spinner_outline.xml" value="0.2328125" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/drawable/total_personas.xml" value="0.176" />
-        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_add_persona.xml" value="0.1390625" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_add_persona.xml" value="0.536" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_edit_info.xml" value="0.264" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_main.xml" value="0.2834978843441467" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_me.xml" value="0.264" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/activity_personality_type.xml" value="0.2371234207968902" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/add_dialog.xml" value="0.39895833333333336" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/content_personality_type.xml" value="0.264" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/custom_dialog.xml" value="0.536" />
+        <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/edit_dialog.xml" value="0.39895833333333336" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/total_persona_widget.xml" value="0.12447916666666667" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/type_man.xml" value="0.6" />
         <entry key="..\:/Users/pagh2/AndroidStudioProjects/app/src/main/res/layout/type_widget.xml" value="0.5746031746031746" />

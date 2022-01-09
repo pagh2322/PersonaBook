@@ -67,6 +67,7 @@
         app:layout_constraintBottom_toBottomOf="@id/cl_info"
         app:cardCornerRadius="10dp">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/INTJ">

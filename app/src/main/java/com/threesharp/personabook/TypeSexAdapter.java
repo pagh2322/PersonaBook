@@ -1,20 +1,21 @@
 package com.threesharp.personabook;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TypeManAdapter extends RecyclerView.Adapter<TypeManAdapter.ViewHolder> {
+public class TypeSexAdapter extends RecyclerView.Adapter<TypeSexAdapter.ViewHolder> {
     private List<Persona> personaList;
     private Context context;
-    private PersonaDatabase database;
 
-    public TypeManAdapter(Context context, List<Persona> personaList) {
+    public TypeSexAdapter(Context context, List<Persona> personaList) {
         this.context = context;
         this.personaList = personaList;
         notifyDataSetChanged();
@@ -23,12 +24,16 @@ public class TypeManAdapter extends RecyclerView.Adapter<TypeManAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.type_man, parent, false);
+        TypeSexAdapter.ViewHolder vh = new TypeSexAdapter.ViewHolder(view);
+        return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        Persona item = personaList.get(position);
+        holder.typedName.setText(item.name);
     }
 
     @Override
@@ -37,9 +42,10 @@ public class TypeManAdapter extends RecyclerView.Adapter<TypeManAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        TextView typedName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            typedName = itemView.findViewById(R.id.tv_typedName);
         }
     }
 }
