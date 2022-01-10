@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<TypeWidget> typeList = new ArrayList<TypeWidget>();
     TypeWidgetAdapter typeWidgetAdapter = null;
     private PersonaDatabase personaDB = null;
-    private int totalNumber = 0;
     GradientDrawable tpDrawable;
 
     @Override
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         new Types(this);
         new MyInfo(this);
         personaDB = PersonaDatabase.getInstance(this);
-        init();
+        initBottomAppbar();
         // initialize data
         class InsertRunnable implements Runnable {
             @Override
@@ -54,30 +53,44 @@ public class MainActivity extends AppCompatActivity {
         t.start();
         setContentView(binding.getRoot());
     }
-
-    // initialize
-    private void init() {
-        initBottomAppbar();
+    private void initThread() {
+        initData();
+        setTypeList();
+        setColor();
     }
-
     // initialize persona database
     private void initData() {
-        totalNumber = personaDB.personaDao().getAll().size();
+        int totalNumber = personaDB.personaDao().getAll().size();
         binding.tvTotalNumber.setText(String.valueOf(totalNumber));
     }
-
-    // initialize bottom appbar
+    // initialize background color and total persona number
+    private void setColor() {
+        int type = MyInfo.getType();
+        tpDrawable = (GradientDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.total_personas);
+        tpDrawable.setColor(Types.get(type).sColor);
+        binding.llTotalPersona.setBackground(tpDrawable);
+        binding.ctlMyPersona.setCollapsedTitleTextColor(Types.get(type).sColor);
+        binding.cvSummary.setCardBackgroundColor(ColorStateList.valueOf(Types.get(type).color));
+        binding.fab.setBackgroundTintList(ColorStateList.valueOf(Types.get(type).color));
+    }
+    // initialize type widgets
+    private void setTypeList() {
+        if (typeList.isEmpty()) {
+            for (int i=0; i<Types.types.size(); i++) {
+                addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
+            }
+            typeWidgetAdapter.notifyDataSetChanged();
+        }
+    }
+    // initialize bottom appbar and menu
     private void initBottomAppbar() {
         binding.btappbar.replaceMenu(R.menu.bottom_app_bar_menu);
         setSupportActionBar(binding.btappbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_outline_web_asset_24);
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addPersonaIntent = new Intent(getApplicationContext(), AddPersonaActivity.class);
-                startActivity(addPersonaIntent);
-            }
+        binding.fab.setOnClickListener(v -> {
+            Intent addPersonaIntent = new Intent(getApplicationContext(), AddPersonaActivity.class);
+            startActivity(addPersonaIntent);
         });
     }
     @Override
@@ -108,37 +121,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    // initialize type widgets
-    private void initRVType() {
-        for (int i=0; i<Types.types.size(); i++) {
-            addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
-        }
-        typeWidgetAdapter.notifyDataSetChanged();
-    }
-    private void setColor() {
-        int type = MyInfo.getType();
-        tpDrawable = (GradientDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.total_personas);
-        tpDrawable.setColor(Types.get(type).sColor);
-        binding.llTotalPersona.setBackground(tpDrawable);
-        binding.ctlMyPersona.setCollapsedTitleTextColor(Types.get(type).sColor);
-        binding.fab.setBackgroundTintList(ColorStateList.valueOf(Types.get(type).color));
-    }
-    private void initThread() {
-        initData();
-        initRVType();
-        setColor();
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
         setColor();
         binding.tvTotalNumber.setText(String.valueOf(personaDB.personaDao().getAll().size()));
-        typeList.clear();
-        for (int i=0; i<Types.types.size(); i++) {
-            addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
+        if (!typeList.isEmpty()) {
+            typeList.clear();
+            setTypeList();
         }
-        typeWidgetAdapter.notifyDataSetChanged();
     }
 
     private void addType(String type, int num, int background) {

@@ -75,6 +75,9 @@ public class PersonalityTypeActivity extends AppCompatActivity {
         initAppbar();
         binding.tvPersonality.setText(Types.get(type).name);
         binding.getRoot().setBackgroundColor(Types.get(type).sColor);
+        Types.Type myType = Types.get(MyInfo.getType());
+        int relation = myType.relation[type];
+        binding.tvRelation.setText(Types.getRelation(relation));
         initData();
     }
     public static int dpToPx(int dp) {

@@ -28,32 +28,109 @@
                 android:id="@+id/ll_totalPersona"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:orientation="horizontal"
                 android:background="@drawable/total_personas"
-                android:orientation="vertical"
+                android:weightSum="7"
                 android:paddingHorizontal="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="나의 페르소나"
-                    android:textAppearance="@style/RegularText"
-                    android:layout_marginTop="60dp"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tv_totalNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="34sp"
-                        android:textAppearance="@style/BoldText"/>
+                    android:layout_weight="2"
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 명"
-                        android:textAppearance="@style/RegularText"/>
+                        android:text="나의 페르소나"
+                        android:textAppearance="@style/RegularText"
+                        android:layout_marginTop="60dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_totalNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="34sp"
+                            android:textAppearance="@style/BoldText"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 명"
+                            android:textAppearance="@style/RegularText"/>
+                    </LinearLayout>
                 </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_summary"
+                    android:layout_width="150dp"
+                    android:layout_height="160dp"
+                    android:layout_weight="5"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="60dp"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:weightSum="2">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/BoldText"
+                                android:textSize="16sp"
+                                android:text="제일 많아요"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:weightSum="3"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/BoldText"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    android:text="100명 ESHF"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/BoldText"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    android:text="100명 ESHF"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/BoldText"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    android:text="100명 ESHF"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/BoldText"
+                                android:textSize="16sp"
+                                android:text="제일 적어요"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -104,5 +181,4 @@
         android:src="@drawable/ic_outline_add_24"
         app:layout_anchor="@id/btappbar"
         android:clickable="true"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
