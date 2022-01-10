@@ -176,4 +176,25 @@ public final class Types {
         }
         return ans;
     }
+    public static int getRelationBackground(Context context, int relation) {
+        int relationBackgound;
+        switch (relation) {
+            case -1:
+                relationBackgound = context.getColor(R.color.badRelation);
+                break;
+            case 0:
+                relationBackgound = context.getColor(R.color.normalRelation);
+                break;
+            case 1:
+                relationBackgound = context.getColor(R.color.goodRelation);
+                break;
+            case 2:
+                relationBackgound = context.getColor(R.color.favRelation);
+                break;
+            default:
+                relationBackgound = context.getColor(R.color.bgColor);
+                break;
+        }
+        return relationBackgound;
+    }
 }

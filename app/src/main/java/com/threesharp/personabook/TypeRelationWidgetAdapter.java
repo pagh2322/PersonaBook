@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class TypeWidgetAdapter extends RecyclerView.Adapter<TypeWidgetAdapter.ViewHolder> {
+public class TypeRelationWidgetAdapter extends RecyclerView.Adapter<TypeRelationWidgetAdapter.ViewHolder> {
     private ArrayList<TypeWidget> mData;
     private Context context;
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    TypeWidgetAdapter(Context context, ArrayList<TypeWidget> list) {
+    TypeRelationWidgetAdapter(Context context, ArrayList<TypeWidget> list) {
         this.context = context;
         mData = list ;
         notifyDataSetChanged();
@@ -50,21 +50,21 @@ public class TypeWidgetAdapter extends RecyclerView.Adapter<TypeWidgetAdapter.Vi
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
     @Override
-    public TypeWidgetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TypeRelationWidgetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
         View view = inflater.inflate(R.layout.type_widget, parent, false) ;
-        TypeWidgetAdapter.ViewHolder vh = new TypeWidgetAdapter.ViewHolder(view) ;
+        TypeRelationWidgetAdapter.ViewHolder vh = new TypeRelationWidgetAdapter.ViewHolder(view) ;
         return vh ;
     }
 
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
-    public void onBindViewHolder(TypeWidgetAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(TypeRelationWidgetAdapter.ViewHolder holder, int position) {
         TypeWidget item = mData.get(position) ;
         holder.type.setText(item.getType()) ;
         holder.number.setText(item.getNumber()) ;
-        holder.background.setCardBackgroundColor(item.getBackground());
+        holder.background.setCardBackgroundColor(item.getRelationBackground());
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.

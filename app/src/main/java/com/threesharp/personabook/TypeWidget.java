@@ -1,14 +1,16 @@
 package com.threesharp.personabook;
 
-import android.graphics.Color;
-
 public class TypeWidget {
     private String type;
     private String number;
     private int background;
+    private int relationBackground;
 
     public void setBackground(int backgroundColor) {
         background = backgroundColor;
+    }
+    public void setRelationBackground(int relationBackground) {
+        this.relationBackground = relationBackground;
     }
     public void setType(String typeText) {
         type = typeText;
@@ -18,6 +20,9 @@ public class TypeWidget {
     }
     public int getBackground() {
         return this.background;
+    }
+    public int getRelationBackground() {
+        return this.relationBackground;
     }
     public String getType() {
         return this.type;

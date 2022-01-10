@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     ArrayList<TypeWidget> typeList = new ArrayList<TypeWidget>();
     TypeWidgetAdapter typeWidgetAdapter = null;
+    TypeRelationWidgetAdapter typeRelationWidgetAdapter = null;
     private PersonaDatabase personaDB = null;
     GradientDrawable tpDrawable;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         typeWidgetAdapter = new TypeWidgetAdapter(this, typeList);
+        typeRelationWidgetAdapter = new TypeRelationWidgetAdapter(this, typeList);
         binding.rvType.setAdapter(typeWidgetAdapter);
         binding.rvType.setLayoutManager(new GridLayoutManager(this,4));
         new Types(this);
@@ -76,10 +78,12 @@ public class MainActivity extends AppCompatActivity {
     // initialize type widgets
     private void setTypeList() {
         if (typeList.isEmpty()) {
+            Types.Type myType = Types.get(MyInfo.getType());
             for (int i=0; i<Types.types.size(); i++) {
-                addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color);
+                addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color, Types.getRelationBackground(this, myType.relation[i]));
             }
             typeWidgetAdapter.notifyDataSetChanged();
+            typeRelationWidgetAdapter.notifyDataSetChanged();
         }
     }
     // initialize bottom appbar and menu
@@ -107,9 +111,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(siteIntent);
                 break;
             case R.id.ab_relation:
+                binding.rvType.setAdapter(typeRelationWidgetAdapter);
+                binding.rvType.setLayoutManager(new GridLayoutManager(this,4));
                 binding.btappbar.replaceMenu(R.menu.re_bottom_app_bar_menu);
                 break;
             case R.id.ab_notRelation:
+                binding.rvType.setAdapter(typeWidgetAdapter);
+                binding.rvType.setLayoutManager(new GridLayoutManager(this,4));
                 binding.btappbar.replaceMenu(R.menu.bottom_app_bar_menu);
                 break;
             case R.id.ab_me:
@@ -133,11 +141,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void addType(String type, int num, int background) {
+    private void addType(String type, int num, int background, int relationBackground) {
         TypeWidget typeWidget = new TypeWidget();
         typeWidget.setType(type);
         typeWidget.setNumber(String.valueOf(num));
         typeWidget.setBackground(background);
+        typeWidget.setRelationBackground(relationBackground);
         typeList.add(typeWidget);
     }
 }
