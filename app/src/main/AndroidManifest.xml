@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonaBook">
         <activity
+            android:name=".PersonaInfoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_persona_info"
+            android:theme="@style/Theme.PersonaBook.NoActionBar" />
+        <activity
             android:name=".AddPersonaActivity"
             android:exported="false" />
         <activity

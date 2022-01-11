@@ -1,6 +1,7 @@
 package com.threesharp.personabook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,16 @@ public class TypeSexAdapter extends RecyclerView.Adapter<TypeSexAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             typedName = itemView.findViewById(R.id.tv_typedName);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Intent ptActivity = new Intent(context, PersonaInfoActivity.class);
+                        context.startActivity(ptActivity);
+                    }
+                }
+            });
         }
     }
 }

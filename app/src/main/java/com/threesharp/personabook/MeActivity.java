@@ -10,14 +10,28 @@ import android.view.View;
 
 import com.threesharp.personabook.databinding.ActivityMeBinding;
 
+import java.util.ArrayList;
+
 public class MeActivity extends AppCompatActivity {
     private ActivityMeBinding binding;
     private int type;
+    private PersonaDatabase personaDB = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMeBinding.inflate(getLayoutInflater());
+        personaDB = PersonaDatabase.getInstance(this);
         init();
+        class InsertRunnable implements Runnable {
+            @Override
+            public void run() {
+                setGoodType();
+            }
+        }
+        InsertRunnable insertRunnable = new InsertRunnable();
+        Thread t = new Thread(insertRunnable);
+        t.start();
         setContentView(binding.getRoot());
     }
 
@@ -47,6 +61,31 @@ public class MeActivity extends AppCompatActivity {
         binding.clInfo.setBackgroundColor(Types.get(type).sColor);
         binding.clEdit.setBackgroundColor(Types.get(type).color);
         binding.tvPersonality.setText(Types.get(type).name);
+        binding.tvKey1.setText(Types.get(type).keys[0]);
+        binding.tvKey2.setText(Types.get(type).keys[1]);
+        binding.tvKey3.setText(Types.get(type).keys[2]);
+        binding.tvKey4.setText(Types.get(type).keys[3]);
+
+    }
+    private void setGoodType() {
+        ArrayList<Integer> goodTypes = Types.getGoodTypes(type);
+        int size = goodTypes.size();
+        binding.tvGoodType1.setText(Types.get(goodTypes.get(0)).name);
+        binding.tvNum1.setText(String.valueOf(personaDB.personaDao().load(goodTypes.get(0)).size()));
+        binding.tvGoodType2.setText(Types.get(goodTypes.get(1)).name);
+        binding.tvNum2.setText(String.valueOf(personaDB.personaDao().load(goodTypes.get(1)).size()));
+        if (size == 3) {
+            binding.tvGoodType3.setTextColor(this.getColor(R.color.fontBColor));
+            binding.tvGoodType3.setText(Types.get(goodTypes.get(2)).name);
+            binding.tvNum3.setTextColor(this.getColor(R.color.fontBColor));
+            binding.tvNum3.setText(String.valueOf(personaDB.personaDao().load(goodTypes.get(2)).size()));
+            binding.tvNum.setTextColor(this.getColor(R.color.fontBColor));
+        }
+        else {
+            binding.tvGoodType3.setTextColor(this.getColor(R.color.fontWColor));
+            binding.tvNum3.setTextColor(this.getColor(R.color.fontWColor));
+            binding.tvNum.setTextColor(this.getColor(R.color.fontWColor));
+        }
     }
 
     @Override
@@ -66,5 +105,6 @@ public class MeActivity extends AppCompatActivity {
         super.onResume();
         type = MyInfo.getType();
         setInfo();
+        setGoodType();
     }
 }

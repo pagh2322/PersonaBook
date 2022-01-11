@@ -26,34 +26,138 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
-        <TextView
-            android:id="@+id/tv_myPersonality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textAppearance="@style/RegularText"
-            android:text="나의 성격 유형은"/>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/tv_myPersonality"
-            app:layout_constraintTop_toBottomOf="@+id/tv_myPersonality"
-            android:layout_marginTop="7dp">
-            <TextView
-                android:id="@+id/tv_personality"
-                android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="20dp"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/BoldText"
-                android:textSize="34sp"
-                android:text="INTJ"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_myPersonality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/RegularText"
+                    android:text="나의 성격 유형은"/>
+                    <TextView
+                        android:id="@+id/tv_personality"
+                        android:layout_marginTop="7dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/BoldText"
+                        android:textSize="34sp"
+                        android:text="INTJ-A/T"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/RegularText"
+                        android:layout_marginStart="2dp"
+                        android:text="입니다"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/RegularText"
-                android:text=" 입니다"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_keyword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/RegularText"
+                    android:text="키워드"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            android:text="# "/>
+                        <TextView
+                            android:id="@+id/tv_key1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            tools:text="직관적"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            android:text="# "/>
+                        <TextView
+                            android:id="@+id/tv_key2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            tools:text="직관적"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            android:text="# "/>
+                        <TextView
+                            android:id="@+id/tv_key3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            tools:text="직관적"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            android:text="# "/>
+                        <TextView
+                            android:id="@+id/tv_key4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/BoldText"
+                            tools:text="직관적"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,16 +201,96 @@
         android:textAppearance="@style/RegularText"
         android:textColor="@color/fontBColor"
         android:text="궁합이 좋은 성격 유형"/>
-
-    <TextView
-        android:id="@+id/tv_badRelation"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_goodRelation"
         app:layout_constraintStart_toStartOf="@id/tv_goodRelation"
-        android:layout_marginTop="25dp"
-        android:textAppearance="@style/RegularText"
-        android:textColor="@color/fontBColor"
-        android:text="궁합이 별로인 성격 유형"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_goodRelation"
+        android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:layout_marginHorizontal="20dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_goodType1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:textSize="34sp"
+                tools:text="ISTJ-A/T"/>
+            <TextView
+                android:id="@+id/tv_num1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:layout_marginStart="5dp"
+                tools:text="5"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:text="명"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_goodType2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:textSize="34sp"
+                tools:text="ISTJ-A/T"/>
+            <TextView
+                android:id="@+id/tv_num2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:layout_marginStart="5dp"
+                tools:text="5"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:text="명"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_goodType3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:textSize="34sp"
+                tools:text="ISTJ-A/T"/>
+            <TextView
+                android:id="@+id/tv_num3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:layout_marginStart="5dp"
+                tools:text="5"/>
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/BoldText"
+                android:textColor="@color/fontBColor"
+                android:text="명"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
