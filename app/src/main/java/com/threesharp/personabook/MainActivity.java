@@ -2,7 +2,6 @@ package com.threesharp.personabook;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -14,11 +13,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.threesharp.personabook.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     TypeRelationWidgetAdapter typeRelationWidgetAdapter = null;
     private PersonaDatabase personaDB = null;
     GradientDrawable tpDrawable;
+    private static final String AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712";
+    int adNumber = 0;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,31 @@ public class MainActivity extends AppCompatActivity {
         t.start();
         setContentView(binding.getRoot());
     }
+    private void initAd() {
+        MobileAds.initialize(MainActivity.this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        InterstitialAd.load(MainActivity.this, AD_UNIT_ID, new AdRequest.Builder().build(), new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+            }
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                mInterstitialAd = null;
+            }
+        });
+        if (mInterstitialAd != null)
+            mInterstitialAd.show(MainActivity.this);
+    }
     private void initThread() {
         initData();
         setTypeList();
+        setGoodType();
         setColor();
     }
     // initialize persona database
@@ -80,10 +107,32 @@ public class MainActivity extends AppCompatActivity {
         if (typeList.isEmpty()) {
             Types.Type myType = Types.get(MyInfo.getType());
             for (int i=0; i<Types.types.size(); i++) {
-                addType(Types.types.get(i).name, personaDB.personaDao().load(i).size(), Types.types.get(i).color, Types.getRelationBackground(this, myType.relation[i]));
+                addType(Types.get(i).name, personaDB.personaDao().load(i).size(), Types.get(i).color, Types.getRelationBackground(this, myType.relation[i]));
             }
             typeWidgetAdapter.notifyDataSetChanged();
             typeRelationWidgetAdapter.notifyDataSetChanged();
+        }
+    }
+    // initialize good types
+    private void setGoodType() {
+        int type = MyInfo.getType();
+        ArrayList<Integer> goodTypes = Types.getGoodTypes(type);
+        int size = goodTypes.size();
+        binding.tvGoodType1.setText(Types.get(goodTypes.get(0)).name);
+        binding.tvNum1.setText(String.valueOf(personaDB.personaDao().load(goodTypes.get(0)).size()));
+        binding.tvGoodType2.setText(Types.get(goodTypes.get(1)).name);
+        binding.tvNum2.setText(String.valueOf(personaDB.personaDao().load(goodTypes.get(1)).size()));
+        if (size == 3) {
+            binding.tvGoodType3.setTextColor(this.getColor(R.color.fontWColor));
+            binding.tvGoodType3.setText(Types.get(goodTypes.get(2)).name);
+            binding.tvNum3.setTextColor(this.getColor(R.color.fontWColor));
+            binding.tvNum3.setText(String.valueOf(personaDB.personaDao().load(goodTypes.get(2)).size()));
+            binding.tvNum.setTextColor(this.getColor(R.color.fontWColor));
+        }
+        else {
+            binding.tvGoodType3.setTextColor(Types.get(type).color);
+            binding.tvNum3.setTextColor(Types.get(type).color);
+            binding.tvNum.setTextColor(Types.get(type).color);
         }
     }
     // initialize bottom appbar and menu
@@ -138,6 +187,17 @@ public class MainActivity extends AppCompatActivity {
         if (!typeList.isEmpty()) {
             typeList.clear();
             setTypeList();
+            setGoodType();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adNumber++;
+        if (adNumber == 6) {
+            initAd();
+            adNumber = 1;
         }
     }
 

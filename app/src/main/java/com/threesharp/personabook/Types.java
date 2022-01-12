@@ -13,8 +13,8 @@ public final class Types {
         int color;
         int sColor;
         int[] relation;
-        String[] keys;
-        Type(String name, int color, int sColor, int[] relation, String[] keys) {
+        int[] keys;
+        Type(String name, int color, int sColor, int[] relation, int[] keys) {
             this.name = name;
             this.color = color;
             this.sColor = sColor;
@@ -23,22 +23,22 @@ public final class Types {
         }
     }
     Types(Context context) {
-        types.add(new Type("ISTJ-A/T", context.getColor(R.color.ISTJ), context.getColor(R.color.sISTJ), new int[]{1, 1, -1, 0, 0, 0, -1, 0, 2, 2, -1, 0, 1, 1, -1, 0}, new String[]{"내향", "감각", "사고", "판단"}));
-        types.add(new Type("ISFJ-A/T", context.getColor(R.color.ISFJ), context.getColor(R.color.sISFJ), new int[]{1, 1, -1, 0, 0, 0, -1, 0, 2, 2, -1, 0, 1, 1, -1, 0}, new String[]{"내향", "감각", "감정", "판단"}));
-        types.add(new Type("INFJ-A/T", context.getColor(R.color.INFJ), context.getColor(R.color.sINFJ), new int[]{-1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 2, 2, -1, -1, 1, 1}, new String[]{"내향", "직관", "감정", "판단"}));
-        types.add(new Type("INTJ-A/T", context.getColor(R.color.INTJ), context.getColor(R.color.sINTJ), new int[]{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 1}, new String[]{"내향", "직관", "사고", "판단"}));
-        types.add(new Type("ISTP-A/T", context.getColor(R.color.ISTP), context.getColor(R.color.sISTP), new int[]{0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 2, 2, -1, 0}, new String[]{"내향", "감각", "사고", "인식"}));
-        types.add(new Type("ISFP-A/T", context.getColor(R.color.ISFP), context.getColor(R.color.sISFP), new int[]{0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 2, 2, 2, 0}, new String[]{"내향", "감각", "감정", "인식"}));
-        types.add(new Type("INFP-A/T", context.getColor(R.color.INFP), context.getColor(R.color.sINFP), new int[]{-1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 2, 2}, new String[]{"내향", "직관", "감정", "인식"}));
-        types.add(new Type("INTP-A/T", context.getColor(R.color.INTP), context.getColor(R.color.sINTP), new int[]{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 2, 0, 1, 2}, new String[]{"내향", "직관", "사고", "인식"}));
-        types.add(new Type("ESTP-A/T", context.getColor(R.color.ESTP), context.getColor(R.color.sESTP), new int[]{2, 2, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0}, new String[]{"외향", "감각", "사고", "인식"}));
-        types.add(new Type("ESFP-A/T", context.getColor(R.color.ESFP), context.getColor(R.color.sESFP), new int[]{2, 2, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0}, new String[]{"외향", "감각", "감정", "인식"}));
-        types.add(new Type("ENFP-A/T", context.getColor(R.color.ENFP), context.getColor(R.color.sENFP), new int[]{-1, -1, 2, 2, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1}, new String[]{"외향", "직관", "감정", "인식"}));
-        types.add(new Type("ENTP-A/T", context.getColor(R.color.ENTP), context.getColor(R.color.sENTP), new int[]{0, 0, 2, 2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, new String[]{"외향", "직관", "사고", "인식"}));
-        types.add(new Type("ESTJ-A/T", context.getColor(R.color.ESTJ), context.getColor(R.color.sESTJ), new int[]{1, 1, -1, 0, 2, 2, -1, 0, 0, 0, -1, 0, 1, 1, -1, 0}, new String[]{"외향", "감각", "사고", "판단"}));
-        types.add(new Type("ESFJ-A/T", context.getColor(R.color.ESFJ), context.getColor(R.color.sESFJ), new int[]{1, 1, -1, 0, 2, 2, -1, 0, 0, 0, -1, 0, 1, 1, -1, 0}, new String[]{"외향", "감각", "감정", "판단"}));
-        types.add(new Type("ENFJ-A/T", context.getColor(R.color.ENFJ), context.getColor(R.color.sENFJ), new int[]{-1, -1, 1, 1, -1, 2, 2, 1, -1, -1, 1, 1, -1, -1, 1, 1}, new String[]{"외향", "직관", "감정", "판단"}));
-        types.add(new Type("ENTJ-A/T", context.getColor(R.color.ENTJ), context.getColor(R.color.sENTJ), new int[]{0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 1, 0, 0, 1, 1}, new String[]{"외향", "직관", "사고", "판단"}));
+        types.add(new Type("ISTJ-A/T", context.getColor(R.color.ISTJ), context.getColor(R.color.sISTJ), new int[]{1, 1, -1, 0, 0, 0, -1, 0, 2, 2, -1, 0, 1, 1, -1, 0}, new int[]{R.string.introverted, R.string.observant, R.string.thinking, R.string.judging}));
+        types.add(new Type("ISFJ-A/T", context.getColor(R.color.ISFJ), context.getColor(R.color.sISFJ), new int[]{1, 1, -1, 0, 0, 0, -1, 0, 2, 2, -1, 0, 1, 1, -1, 0}, new int[]{R.string.introverted, R.string.observant, R.string.feeling, R.string.judging}));
+        types.add(new Type("INFJ-A/T", context.getColor(R.color.INFJ), context.getColor(R.color.sINFJ), new int[]{-1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 2, 2, -1, -1, 1, 1}, new int[]{R.string.introverted, R.string.intuitive, R.string.feeling, R.string.judging}));
+        types.add(new Type("INTJ-A/T", context.getColor(R.color.INTJ), context.getColor(R.color.sINTJ), new int[]{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 1}, new int[]{R.string.introverted, R.string.intuitive, R.string.intuitive, R.string.judging}));
+        types.add(new Type("ISTP-A/T", context.getColor(R.color.ISTP), context.getColor(R.color.sISTP), new int[]{0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 2, 2, -1, 0}, new int[]{R.string.introverted, R.string.observant, R.string.intuitive, R.string.prospecting}));
+        types.add(new Type("ISFP-A/T", context.getColor(R.color.ISFP), context.getColor(R.color.sISFP), new int[]{0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 2, 2, 2, 0}, new int[]{R.string.introverted, R.string.observant, R.string.feeling, R.string.prospecting}));
+        types.add(new Type("INFP-A/T", context.getColor(R.color.INFP), context.getColor(R.color.sINFP), new int[]{-1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 2, 2}, new int[]{R.string.introverted, R.string.intuitive, R.string.feeling, R.string.prospecting}));
+        types.add(new Type("INTP-A/T", context.getColor(R.color.INTP), context.getColor(R.color.sINTP), new int[]{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 2, 0, 1, 2}, new int[]{R.string.introverted, R.string.intuitive, R.string.intuitive, R.string.prospecting}));
+        types.add(new Type("ESTP-A/T", context.getColor(R.color.ESTP), context.getColor(R.color.sESTP), new int[]{2, 2, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0}, new int[]{R.string.extroverted, R.string.observant, R.string.intuitive, R.string.prospecting}));
+        types.add(new Type("ESFP-A/T", context.getColor(R.color.ESFP), context.getColor(R.color.sESFP), new int[]{2, 2, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, -1, 0}, new int[]{R.string.extroverted, R.string.observant, R.string.feeling, R.string.prospecting}));
+        types.add(new Type("ENFP-A/T", context.getColor(R.color.ENFP), context.getColor(R.color.sENFP), new int[]{-1, -1, 2, 2, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1}, new int[]{R.string.extroverted, R.string.intuitive, R.string.feeling, R.string.prospecting}));
+        types.add(new Type("ENTP-A/T", context.getColor(R.color.ENTP), context.getColor(R.color.sENTP), new int[]{0, 0, 2, 2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, new int[]{R.string.extroverted, R.string.intuitive, R.string.intuitive, R.string.prospecting}));
+        types.add(new Type("ESTJ-A/T", context.getColor(R.color.ESTJ), context.getColor(R.color.sESTJ), new int[]{1, 1, -1, 0, 2, 2, -1, 0, 0, 0, -1, 0, 1, 1, -1, 0}, new int[]{R.string.extroverted, R.string.observant, R.string.intuitive, R.string.judging}));
+        types.add(new Type("ESFJ-A/T", context.getColor(R.color.ESFJ), context.getColor(R.color.sESFJ), new int[]{1, 1, -1, 0, 2, 2, -1, 0, 0, 0, -1, 0, 1, 1, -1, 0}, new int[]{R.string.extroverted, R.string.observant, R.string.feeling, R.string.judging}));
+        types.add(new Type("ENFJ-A/T", context.getColor(R.color.ENFJ), context.getColor(R.color.sENFJ), new int[]{-1, -1, 1, 1, -1, 2, 2, 1, -1, -1, 1, 1, -1, -1, 1, 1}, new int[]{R.string.extroverted, R.string.intuitive, R.string.feeling, R.string.judging}));
+        types.add(new Type("ENTJ-A/T", context.getColor(R.color.ENTJ), context.getColor(R.color.sENTJ), new int[]{0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1, 1, 0, 0, 1, 1}, new int[]{R.string.extroverted, R.string.intuitive, R.string.intuitive, R.string.judging}));
     }
     public static Type get(int pos) {
         return types.get(pos);
@@ -157,23 +157,23 @@ public final class Types {
         }
         return type;
     }
-    public static String getRelation(int relation) {
-        String ans;
+    public static int getRelation(int relation) {
+        int ans;
         switch (relation) {
             case -1 :
-                ans = "최악의 궁합";
+                ans = R.string.worstMatch;
                 break;
             case 0 :
-                ans = "무난한 관계";
+                ans = R.string.normalRelation;
                 break;
             case 1 :
-                ans = "좋은 관계";
+                ans = R.string.goodRelation;
                 break;
             case 2 :
-                ans = "천생연분";
+                ans = R.string.mySoulmate;
                 break;
             default:
-                ans = "";
+                ans = R.string.normalRelation;
                 break;
         }
         return ans;

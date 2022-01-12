@@ -62,7 +62,6 @@ public class EditInfoActivity extends AppCompatActivity {
 
     private void initToolbar() {
         setSupportActionBar(binding.toolbar);
-        binding.tvTitle.setText("내 정보");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_outline_close_24);

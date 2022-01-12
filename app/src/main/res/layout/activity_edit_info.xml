@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:textAppearance="@style/BoldText"
             android:textColor="@color/fontBColor"
-            android:text="내 정보"/>
+            android:text="@string/myInfo"/>
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -48,7 +48,7 @@
                 android:id="@+id/tv_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성별"
+                android:text="@string/sex"
                 android:textAppearance="@style/BoldText"
                 android:textColor="@color/fontBColor"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -70,7 +70,7 @@
                     android:button="@null"
                     android:textAppearance="@style/BoldText"
                     android:textSize="16sp"
-                    android:text="남자" />
+                    android:text="@string/male" />
 
                 <RadioButton
                     android:id="@+id/rb_female"
@@ -83,7 +83,7 @@
                     android:button="@null"
                     android:textAppearance="@style/BoldText"
                     android:textSize="16sp"
-                    android:text="여자" />
+                    android:text="@string/female" />
             </RadioGroup>
         </LinearLayout>
 
@@ -96,7 +96,7 @@
                 android:id="@+id/tv_personality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성격유형"
+                android:text="@string/personality"
                 android:textAppearance="@style/BoldText"
                 android:textColor="@color/fontBColor"/>
             <LinearLayout

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/ab_relation"
-        android:title="궁합"
+        android:title="@string/relation"
         app:showAsAction="ifRoom"/>
     <group>
         <item
             android:id="@+id/ab_me"
-            android:title="내 정보"/>
+            android:title="@string/myInfo"/>
         <item
             android:id="@+id/ab_setting"
-            android:title="설정"/>
+            android:title="@string/settings"/>
     </group>
 </menu>

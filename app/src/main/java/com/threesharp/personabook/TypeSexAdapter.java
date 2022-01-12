@@ -52,8 +52,12 @@ public class TypeSexAdapter extends RecyclerView.Adapter<TypeSexAdapter.ViewHold
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
-                        Intent ptActivity = new Intent(context, PersonaInfoActivity.class);
-                        context.startActivity(ptActivity);
+                        Intent intent = new Intent(context, PersonaInfoActivity.class);
+                        intent.putExtra("id", personaList.get(pos).id);
+                        intent.putExtra("name", personaList.get(pos).name);
+                        intent.putExtra("type", personaList.get(pos).type);
+                        intent.putExtra("sex", personaList.get(pos).sex);
+                        context.startActivity(intent);
                     }
                 }
             });

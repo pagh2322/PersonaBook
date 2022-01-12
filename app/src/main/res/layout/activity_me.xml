@@ -21,11 +21,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_info"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:background="@color/sINTJ"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:paddingBottom="70dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,18 +34,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginHorizontal="20dp"
-            android:weightSum="2">
+            android:weightSum="7">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_myPersonality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/RegularText"
-                    android:text="나의 성격 유형은"/>
+                    android:text="@string/myPersonality"/>
                     <TextView
                         android:id="@+id/tv_personality"
                         android:layout_marginTop="7dp"
@@ -53,24 +54,18 @@
                         android:textAppearance="@style/BoldText"
                         android:textSize="34sp"
                         android:text="INTJ-A/T"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@style/RegularText"
-                        android:layout_marginStart="2dp"
-                        android:text="입니다"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="4"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_keyword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/RegularText"
-                    android:text="키워드"/>
+                    android:text="@string/keyword"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,12 +82,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             android:text="# "/>
                         <TextView
                             android:id="@+id/tv_key1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             tools:text="직관적"/>
                     </LinearLayout>
                     <LinearLayout
@@ -105,12 +102,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             android:text="# "/>
                         <TextView
                             android:id="@+id/tv_key2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             tools:text="직관적"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -130,12 +129,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             android:text="# "/>
                         <TextView
                             android:id="@+id/tv_key3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             tools:text="직관적"/>
                     </LinearLayout>
                     <LinearLayout
@@ -148,12 +149,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             android:text="# "/>
                         <TextView
                             android:id="@+id/tv_key4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/BoldText"
+                            android:textSize="16sp"
                             tools:text="직관적"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -185,7 +188,7 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="30dp"
                 android:textAppearance="@style/BoldText"
-                android:text="내 정보 수정하기 >"/>
+                android:text="@string/changeInfo"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -200,7 +203,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textAppearance="@style/RegularText"
         android:textColor="@color/fontBColor"
-        android:text="궁합이 좋은 성격 유형"/>
+        android:text="@string/goodType"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -234,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/BoldText"
                 android:textColor="@color/fontBColor"
-                android:text="명"/>
+                android:text="@string/num"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -261,7 +264,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/BoldText"
                 android:textColor="@color/fontBColor"
-                android:text="명"/>
+                android:text="@string/num"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -289,7 +292,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/BoldText"
                 android:textColor="@color/fontBColor"
-                android:text="명"/>
+                android:text="@string/num"/>
         </LinearLayout>
     </LinearLayout>
 

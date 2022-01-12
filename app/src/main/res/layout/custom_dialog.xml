@@ -15,7 +15,7 @@
         android:textAppearance="@style/RegularText"
         android:textColor="@color/fontBColor"
         android:textSize="16sp"
-        android:text="취소할까요?" />
+        android:text="@string/cancelIt" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:textSize="16sp"
             android:textAppearance="@style/BoldText"
             android:textColor="@color/fontBColor"
-            android:text="아니오" />
+            android:text="@string/no" />
 
         <TextView
             android:id="@+id/tv_yes"
@@ -46,6 +46,6 @@
             android:textAppearance="@style/BoldText"
             android:textColor="@color/fontBColor"
             android:textSize="16sp"
-            android:text="네" />
+            android:text="@string/yes" />
     </LinearLayout>
 </LinearLayout>
